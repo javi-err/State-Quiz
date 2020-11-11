@@ -16,7 +16,8 @@ export class App extends Component {
       questionBank : [],
       answeredQuestions : [],
       correctCount : 0,
-      wrongAnswer : 0,
+      wrongCount : 0,
+      isAnswerCorrect: null,
       
     }
       
@@ -51,26 +52,20 @@ handleButtonClick = (e) => {
   if(answer === this.state.questionBank[0].correctAnswer) {
       this.setState({
         correctCount : this.state.correctCount + 1,
+        isAnswerCorrect: true,
       })
       
   }
   else {
     this.setState({
-      wrongAnswer: this.state.wrongAnswer + 1,
+      wrongCount: this.state.wrongCount + 1,
+      isAnswerCorrect: false,
     })
   }
 
 
 }
   
-
-  // this.setState({
-  //   currentQuestion: this.state.currentQuestion + 1,
-  //   answeredQuestions : this.state.questionBank.shift(),
-  //   questionBank : this.state.questionBank,
-  // })
-
-
   }
 
 handleQuizStart = (e) => {
@@ -83,11 +78,23 @@ handleQuizStart = (e) => {
 
 }
 
+handleNextQuestion = (e) => {
+  e.preventDefault()
+
+    this.setState({
+    currentQuestion: this.state.currentQuestion + 1,
+    answeredQuestions : this.state.questionBank.shift(),
+    questionBank : this.state.questionBank,
+    isAnswerCorrect: null,
+    answerSelected: false,
+  })
+}
+
 
   
   render() {
     if(this.state.quizStarted) { 
-      return <Question questionState={this.state} handleButtonClick={this.handleButtonClick}/>
+      return <Question questionState={this.state} handleButtonClick={this.handleButtonClick} handleNextQuestion={this.handleNextQuestion}/>
   }
   else {
     return <Landing handleQuizStart={this.handleQuizStart} />
