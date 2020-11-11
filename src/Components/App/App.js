@@ -44,7 +44,7 @@ handleButtonClick = (e) => {
   e.preventDefault()
   const answer = e.target.innerHTML
 
-  if(this.state.currentQuestion <= 10){
+  if(this.state.questionBank.length !== 0){
     this.setState({
       answerSelected: true,
     })
@@ -62,9 +62,10 @@ handleButtonClick = (e) => {
       isAnswerCorrect: false,
     })
   }
-
+  
 
 }
+
   
   }
 

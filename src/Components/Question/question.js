@@ -34,6 +34,15 @@ export default function Question(props) {
         }
     }
 
+    const hasAlreadyClicked = () => {
+        if(props.questionState.answerSelected) {
+            return null;
+        }
+        else {
+            return props.handleButtonClick
+        }
+    }
+
     return (
         <>
         <Score correct={props.questionState.correctCount} wrong={props.questionState.wrongCount} />
@@ -50,10 +59,10 @@ export default function Question(props) {
             <div className="answer-buttons">
                 {props.questionState.questionBank[0].answers.map(data  => {
                     if(data === props.questionState.questionBank[0].correctAnswer && props.questionState.answerSelected)  {
-                        return <button onClick={props.handleButtonClick} key={data} style={isActive} className={'answer btn'}>{data}</button>
+                        return <button onClick={hasAlreadyClicked()} key={data} style={isActive} className={'answer btn'}>{data}</button>
                         
                     }
-                   return <button onClick={props.handleButtonClick} key={data} className={`answer btn ${data}`}>{data}</button>
+                   return <button onClick={hasAlreadyClicked()} key={data} className={`answer btn ${data}`}>{data}</button>
                 })}
             </div>
             
