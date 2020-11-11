@@ -3,18 +3,15 @@ import React, { Component } from 'react'
 
 
 export class Landing extends Component {
-    // startQuizButton(e) {
-    //     e.preventDefault()
-    //     let quizStart = !this.props
-    //    this.setState({
-    //         quizStarted: quizStart
-    //     })
-    // }
+
+
 
     
     render() {
 
-        console.log(this.props)
+        
+
+
 
    
 
@@ -32,7 +29,7 @@ export class Landing extends Component {
         
         
                     <div className="button-containers">
-                        <button onClick={this.startQuizButton}>Start Quiz!</button>
+                        <button onClick={this.props.handleQuizStart}>Start Quiz!</button>
                     </div>
                 </div>
         )
